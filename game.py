@@ -41,13 +41,35 @@ def makeMove():
 				print '    ',
 	while True:
 		choice= raw_input('> ')
-		if playData[choice] == '.':
+		option = playData.get(choice,0)
+
+		if option == '.':
 			playData[choice] = player
 			break
 		else :
 			print 'Invalid choice. Try again.'
 
+def checkWinner():
+	if playData['topL']==playData['topM'] and playData['topL']==playData['topR'] and playData['topL']==player:
+		return player
+	if playData['midL']==playData['midM'] and playData['midL']==playData['midR'] and playData['midL']==player:
+		return player
+	if playData['lowL']==playData['lowM'] and playData['lowL']==playData['lowR'] and playData['lowL']==player:
+		return player
+	if playData['topL']==playData['midL'] and playData['topL']==playData['lowL'] and playData['topL']==player:
+		return player 
+	if playData['topM']==playData['midM'] and playData['topM']==playData['lowM'] and playData['topM']==player:
+		return player 
+	if playData['topR']==playData['midR'] and playData['topR']==playData['lowR'] and playData['topR']==player:
+		return player 
+	if playData['topL']==playData['midM'] and playData['topL']==playData['lowR'] and playData['topL']==player:
+		return player
+	if playData['topR']==playData['midM'] and playData['topR']==playData['lowL'] and playData['topR']==player:
+		return player	
+	return	None
+
 p1, p2 = firstTimePlay()
+playerData = {'X' : p1, 'Y' : p2}
 player = 'O'
 for j in range(9):
 	playField()
@@ -58,4 +80,10 @@ for j in range(9):
 		player = 'O'
 		print p2+'\'s turn'
 	makeMove()
-playfield()
+	winner = checkWinner()
+	if winner != None:
+		playField()
+		print 'Congrats player %s, you won' %playerData[player]
+		exit()
+playField()
+print 'Looks like a tie'
