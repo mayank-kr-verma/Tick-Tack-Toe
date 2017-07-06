@@ -1,5 +1,5 @@
 #################################################
-#      Two player tick tack toe game			#				
+#      Single player tick tack toe game			#				
 #      Author - MakX							#
 #      Date - 5 july 17							#
 #################################################
@@ -13,11 +13,16 @@ moveList = ['topL' , 'topM' , 'topR' ,
 
 def firstTimePlay():
 	print 'Hello and welcome to a two player game of tick tack toe'
-	print 'Enter the name of first player : '
-	player1 = raw_input('> ')
-	print 'Enter the name of second player : '
-	player2 = raw_input('> ')
-	return player1, player2
+	print 'Enter your name : '
+	playerName = raw_input('> ')
+	while True:
+		print 'Choose between X and O (X goes first) : '
+		playerSign = raw_input('> ')
+		if playerSign!='X'and playerSign!='O':
+			print 'Error'
+		else:
+			break
+	return playerName, playerSign
 
 def playField():
 	print playData['topL']+'|'+playData['topM']+'|'+playData['topR']
@@ -49,6 +54,9 @@ def makeMove():
 		else :
 			print 'Invalid choice. Try again.'
 
+def makeMoveSystem():
+	pass
+
 def checkWinner():
 	if playData['topL']==playData['topM'] and playData['topL']==playData['topR'] and playData['topL']==player:
 		return player
@@ -68,22 +76,40 @@ def checkWinner():
 		return player	
 	return	None
 
-p1, p2 = firstTimePlay()
-playerData = {'X' : p1, 'Y' : p2}
+p, ps = firstTimePlay()
+if ps == 'X':
+	p1 = p
+	p2 = 'system'
+else:
+	p2 = p
+	p1 = 'system'
+playerData = {'X' : p1, 'O' : p2}
 player = 'O'
 for j in range(9):
 	playField()
 	if player == 'O':
 		player = 'X'
 		print p1+'\'s turn'
+		if p1 == p:
+			makeMove()
+		elif p1 == 'system':
+			makeMoveSystem()
 	else:
 		player = 'O'
 		print p2+'\'s turn'
-	makeMove()
+		if p2 == p:
+			makeMove()
+		elif p2 == 'system':
+			makeMoveSystem()
+	
 	winner = checkWinner()
-	if winner != None:
+	if playerData[winner] == p:
 		playField()
-		print 'Congrats player %s, you won' %playerData[player]
+		print 'Congrats %s, you won' %p
+		exit()
+	elif playerData[winner] == 'system'
+		playField()
+		print 'Boo yaa! %s' %p
 		exit()
 playField()
 print 'Looks like a tie'
