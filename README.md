@@ -4,6 +4,5 @@ Forked from main tick-tack-toe game
 
 ### TO-DO'S-
 
--[X]  Add single player mode 
--[ ]  Add a rematching option and scoreboard
--[ ]  Add comments (seriously needed)
+- Add a rematching option and scoreboard
+- Add comments (seriously needed)
