@@ -7,7 +7,7 @@ System checks and declares the winner
 
 ### TO-DO'S-
 
--[X]  Add a testing mechanism 
--[X]  Add single player mode (forked and done)
--[ ]  Add a scoreboard and rematching option
--[ ]  Add comments (seriously needed)
+- ~~Add a testing mechanism~~
+- ~~Add single player mode~~
+- Add a scoreboard and rematching option
+- Add comments (seriously needed)
